@@ -10,7 +10,7 @@ Original file is located at
 import os
 import openai
 
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = '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'
 
 
 from langchain.vectorstores import Chroma
@@ -26,7 +26,7 @@ from langchain.schema import AgentAction, AgentFinish
 
 
 from langchain.agents import initialize_agent
-from langchain.llms import OpenAI
+from langchain.llms.openai import OpenAI
 import re
 import langchain
 from langchain.chat_models import ChatOpenAI
