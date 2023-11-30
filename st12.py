@@ -10,7 +10,7 @@ Original file is located at
 import os
 import openai
 
-os.environ['OPENAI_API_KEY'] = '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'
+os.environ['OPENAI_API_KEY'] = st.secrets["key1"]
 
 
 from langchain.vectorstores import Chroma
