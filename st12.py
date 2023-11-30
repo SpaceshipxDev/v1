@@ -35,7 +35,7 @@ import streamlit as st
 import os
 import openai
 
-os.environ['OPENAI_API_KEY'] = st.secrets['key1]
+os.environ['OPENAI_API_KEY'] = st.secrets['key1']
 
 
 
