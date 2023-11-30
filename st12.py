@@ -205,12 +205,76 @@ chain_ask = (
 
 )
 
+import streamlit as st
+st.set_page_config(page_title = "Hazel", page_icon = ":penguin:")
+
+st.header("Say Anything!")
+
+
+
+
+llm = ChatOpenAI(model = "gpt-4-1106-preview", temperature = 0.5)
+
+
+
+template_ask = """
+
+First, understand the meaning of an individual's beliefs. An individual's beliefs is the key ideas that underpin the decisions of oneself and can be generalized to almost anything. They are one's personal interpretation of conventions in the world, and are unspecific. For example, one core belief could be 'money is useless'. These beliefs can be generalized to any scenario.
+
+Then, outline the 5 ABSTRACT, UNSPECIFIC beliefs of the input, in the form of a rubric.
+The rubric can be used to assess anything based on the beliefs you evaluated. The extent to which the subject meets a belief provides the score for the belief (out of 3); the total score is the sum of the scores of the 5 beliefs.
+
+The input is here: ""{input}""
+"""
+
+prompt_ask = ChatPromptTemplate.from_template(template_ask)
+chain_ask = (
+    prompt_ask | llm | StrOutputParser()
+
+)
+
 if retrieved_person:
-  questions = chain_ask.invoke({"input": retrieved_person})
-  st.write(questions)
+  def get_questions():
+    questions = chain_ask.invoke({"input": retrieved_person})
+    return questions
+  da_questions = get_questions()
+  st.write(f"lolz, here: {da_questions}")
+
+
 if retrieved_subject:
-  analysis = chain1.invoke({"question":questions, "input": retrieved_subject})
-  result = chainy.invoke({"input1": analysis, "input2": retrieved_subject})
-  st.write(result)
-  st.write(analysis)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  def get_analysis():
+    analysis = chain1.invoke({"queston":da_questions, "input": retrieved_subject})
+    return analysis
+  obtained_analysis = get_analysis()
+  st.write(f"here is the analysis: {obtained_analysis}")
+
+
+  if obtained_analysis:
+    def get_results():
+      results = chainy.invoke({"input1":obtained_analysis, "input2": retrieved_subject})
+      return results
+    agi_results = get_results()
+    st.write(f"hahaha noob: {agi_results}")
+
 
